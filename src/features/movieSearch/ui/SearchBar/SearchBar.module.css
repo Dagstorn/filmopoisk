@@ -1,0 +1,24 @@
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 25%;
+}
+
+.input {
+    flex: 1;
+    border-radius: 8px;
+    background-color: #fff;
+
+    border: none;
+    outline: none;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 400;
+    height: 40px;
+    color: #1B1F23;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input::placeholder {
+    color: #999FA6;
+}
