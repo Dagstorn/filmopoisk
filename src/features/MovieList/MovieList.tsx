@@ -20,14 +20,24 @@ export default function MoviesList() {
 
     useEffect(() => {
         const page = searchParams.get('page') || '';
-        setPage(Number(page));
+        if (page !== '') {
+            if (Number(page) > 0) {
+                setPage(Number(page));
+            }
+        }
     }, [searchParams]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [page]);
+
 
     const handlePageChange = (newPage: number) => {
         setPage(page);
         const newSearchParams = new URLSearchParams(searchParams);
         newSearchParams.set('page', String(newPage));
         setSearchParams(newSearchParams);
+
     };
 
 
@@ -36,6 +46,11 @@ export default function MoviesList() {
         <span className={styles.errorTop}>Фильмы не найдены</span>
         <span className={styles.errorDetails}>Измените запрос и попробуйте снова</span>
     </div>;
+
+    if (data?.search_result && data?.search_result.length === 0) return <div className={styles.errorContainer}>;
+        <span className={styles.errorTop}>Фильмы не найдены</span>
+        <span className={styles.errorDetails}>Измените запрос и попробуйте снова</span>
+    </div>
     return (
         <>
             <div className={styles.movieList}>

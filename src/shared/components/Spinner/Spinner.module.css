@@ -5,13 +5,9 @@
     height: 100%;
 }
 
-
-
-
 .loader {
     color: #999FA6;
     font-size: 8px;
-    margin: 100px auto;
     width: 1em;
     height: 1em;
     border-radius: 50%;

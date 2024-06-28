@@ -60,3 +60,11 @@
 .desc_row:not(:last-child) {
     margin-bottom: 12px;
 }
+
+.poster {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
