@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../../pages/Layout/Layout';
+import Layout from "@/pages/Layout/Layout";
 
-import HomePage from '../../pages/HomePage/HomePage';
-import MoviePage from '../../pages/MoviePage/MoviePage';
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
+import HomePage from "@/pages/HomePage/HomePage";
+import MoviePage from "@/pages/MoviePage/MoviePage";
+import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
     {

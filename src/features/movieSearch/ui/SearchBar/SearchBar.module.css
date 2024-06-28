@@ -6,16 +6,16 @@
 
 .input {
     flex: 1;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     background-color: #fff;
 
     border: none;
     outline: none;
     padding: 0 12px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: var(--font-size-main);
+    font-weight: var(--font-weight-thin);
     height: 40px;
-    color: #1B1F23;
+    color: var(--text-main);
     font-family: 'Roboto', sans-serif;
 }
 

@@ -1,21 +1,37 @@
-import { Link } from 'react-router-dom';
 import styles from "./MovieCard.module.css"
-interface MovieCardProps {
-    movie: {
-        id: string;
-        title: string;
-        genre: string;
-        year: number;
-    };
-}
+import { Movie } from '../../../../shared/types';
+import MovieRating from "@/features/movieRating/MovieRating";
+import { useNavigate } from "react-router-dom";
 
-function MovieCard({ movie }: MovieCardProps) {
+function MovieCard({ movie }: { movie: Movie }) {
+    const navigate = useNavigate();
     return (
         <div className={styles.card}>
-            <h3>{movie.title}</h3>
-            <p>{movie.genre}</p>
-            <p>{movie.year}</p>
-            <Link to={`/movie/${movie.id}`}>Подробнее</Link>
+            <div className={styles.poster} onClick={() => {
+                navigate(`/movies/${movie.id}`);
+            }}>
+                <img src={`http://localhost:3030/static/images/${movie.id}`} alt="" />
+            </div>
+            <div className={styles.info} onClick={() => {
+                navigate(`/movies/${movie.id}`);
+            }}>
+                <span className={styles.title}>{movie.title}</span>
+                <div className={styles.desc_row}>
+                    <span className={styles.desc_name}>Жанр</span>
+                    <p className={styles.desc_val}>{movie.genre}</p>
+                </div>
+                <div className={styles.desc_row}>
+                    <span className={styles.desc_name}>Год выпуска</span>
+                    <p className={styles.desc_val}>{movie.release_year}</p>
+                </div>
+                <div className={styles.desc_row}>
+                    <span className={styles.desc_name}>Описание</span>
+                    <p className={styles.desc_val}>{movie.description}</p>
+                </div>
+            </div>
+            <div className={styles.rating}>
+                <MovieRating ratingValue={movie.rating} />
+            </div>
         </div>
     );
 }

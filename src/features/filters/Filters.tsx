@@ -5,7 +5,7 @@ import YearFilter from "./components/YearFilter";
 export default function Filters() {
     return (
         <div className={styles.filtersContainer}>
-            <h2 className={styles.header}>Фильтр</h2>
+            <span className={styles.header}>Фильтр</span>
             <GenreFilter />
             <YearFilter />
         </div>

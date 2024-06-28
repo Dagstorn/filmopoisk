@@ -6,20 +6,24 @@
     display: flex;
     justify-content: space-between;
 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
 }
 
 .logo {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: var(--font-size-logo);
+    font-weight: var(--font-weight-bold);
 }
 
 .action {
     background-color: #FF5500;
     height: 40px;
     padding: 8px 16px 8px 16px;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-main);
+    font-weight: var(--font-weight-medium);
     border: none;
 }

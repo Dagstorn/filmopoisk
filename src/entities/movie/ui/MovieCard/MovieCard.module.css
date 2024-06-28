@@ -1,12 +1,62 @@
 .card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    width: 200px;
+    padding: 24px;
+    border-radius: var(--border-radius);
+    margin-bottom: 16px;
+    background-color: #ffffff;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.poster {
+    width: 10%;
+    cursor: pointer;
+}
+
+.poster img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    height: auto;
+}
+
+.info {
+    width: 75%;
+    cursor: pointer;
+
+}
+
+
+.title {
+    font-size: var(--font-size-t1);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-main);
+    margin-bottom: 16px;
+    display: block;
 }
 
 .filters {
     flex: 1;
     max-width: 250px;
     margin-right: 20px;
+}
+
+.desc_row {
+    display: flex;
+    font-size: var(--font-size-main);
+    font-weight: var(--font-weight-thin);
+}
+
+.desc_name {
+    width: 20%;
+    color: #ABABAB;
+}
+
+.desc_val {
+    margin: 0;
+    width: 80%;
+    color: var(--text-main);
+}
+
+.desc_row:not(:last-child) {
+    margin-bottom: 12px;
 }

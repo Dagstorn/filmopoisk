@@ -1,5 +1,5 @@
 import Filters from '../../features/filters/Filters';
-import MoviesList from '../../entities/movie/ui/MovieList/MovieList';
+import MoviesList from '@/features/MovieList/MovieList';
 import SearchBar from '../../features/movieSearch/ui/SearchBar/SearchBar';
 import styles from './HomePage.module.css';
 
