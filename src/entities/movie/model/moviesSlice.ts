@@ -16,7 +16,7 @@ const initialState: MoviesState = {
   loading: false,
   error: null,
   genreFilter: '',
-  yearFilter: '0',
+  yearFilter: '',
   searchQuery: ''
 };
 

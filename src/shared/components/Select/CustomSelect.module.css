@@ -1,0 +1,50 @@
+.customSelect {
+    position: relative;
+    width: 100%;
+}
+
+.selectBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+
+.selectBox span {
+    flex: 1;
+    font-size: var(--font-size-main);
+}
+
+.selectIcon {
+    margin-left: 10px;
+}
+
+.optionsList {
+    position: absolute;
+    top: calc(100% - 10px);
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    background-color: white;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 8px;
+}
+
+.option {
+    padding: 12px 10px;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-main);
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: rgba(250, 250, 250, 1);
+}

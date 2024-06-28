@@ -2,21 +2,25 @@
     display: flex;
     align-items: center;
     width: 25%;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 0 12px;
+    gap: 8px;
 }
 
 .input {
     flex: 1;
-    border-radius: var(--border-radius);
-    background-color: #fff;
-
     border: none;
     outline: none;
-    padding: 0 12px;
     font-size: var(--font-size-main);
     font-weight: var(--font-weight-thin);
     height: 40px;
     color: var(--text-main);
     font-family: 'Roboto', sans-serif;
+}
+
+.clearInput:hover {
+    cursor: pointer;
 }
 
 .input::placeholder {

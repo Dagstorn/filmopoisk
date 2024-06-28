@@ -5,6 +5,7 @@ import { RootState } from '@/app/providers/store';
 import { setGenreFilter } from '@/entities/movie/model/moviesSlice';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import CustomSelect from '@/shared/components/Select/CustomSelect';
 
 export default function GenreFilter() {
     const dispatch = useDispatch();
@@ -16,28 +17,24 @@ export default function GenreFilter() {
         dispatch(setGenreFilter(genre));
     }, [searchParams, dispatch]);
 
-    const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setGenreFilter(e.target.value));
+    const handleGenreChange = (value: string) => {
+
+        dispatch(setGenreFilter(value));
         const newSearchParams = new URLSearchParams(searchParams);
-        newSearchParams.set('genre', e.target.value);
-        if (e.target.value === "") {
+        newSearchParams.set('genre', value);
+        if (value === "" || value === "0") {
             newSearchParams.delete('genre');
         }
         setSearchParams(newSearchParams);
     };
 
 
+    const options = Object.entries(GENRES).map(([value, label]) => ({ value, label }));
 
     return (
         <div className={styles.filterGroup}>
             <label className={styles.label}>Жанр:</label>
-            <select className={styles.select} value={genre} onChange={handleGenreChange}>
-                {Object.entries(GENRES).map(([key, value]) => (
-                    <option key={key} value={key === '0' ? '' : key}>
-                        {value}
-                    </option>
-                ))}
-            </select>
+            <CustomSelect placeholder="Выберите жанр" value={genre} onChange={handleGenreChange} options={options} />
         </div>
     )
 }
