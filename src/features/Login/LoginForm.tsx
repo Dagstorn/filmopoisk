@@ -4,20 +4,23 @@ import CustomModal from "@/shared/components/Modal/CustomModal";
 import { useEffect, useState } from "react";
 import styles from "./LoginForm.module.css";
 import CustomInput from "@/shared/components/Input/CustomInput";
-import { useLoginMutation } from "../api/loginApi";
 import { useDispatch, useSelector } from "react-redux";
-import { clearToken, setToken } from "@/entities/user/model/authSlice";
-import { RootState } from "@/app/providers/store";
+import { clearToken } from "@/entities/user/model/authSlice";
+import { login, selectAuthLoading, selectAuthError, selectIsAuthenticated } from '@/entities/user/model/authSlice';
+import { AppDispatch } from '@/app/providers/store';
+
 
 export default function LoginForm() {
     const [isVisible, setIsVisible] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState<string | null>(null);
-    const [login, { isLoading }] = useLoginMutation();
-    const dispatch = useDispatch();
+    const [formError, setFormError] = useState<string | null>(null);
 
-    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const loading = useSelector(selectAuthLoading);
+    const error = useSelector(selectAuthError);
+    const isAuthenticated = useSelector(selectIsAuthenticated);
 
 
     useEffect(() => {
@@ -30,21 +33,14 @@ export default function LoginForm() {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setError(null);
-
+        setFormError(null);
         if (!username || !password) {
-            setError('Введите логин и пароль!');
+            setFormError('Введите логин и пароль!');
             return;
         }
-
-        try {
-            const response = await login({ username, password }).unwrap();
-            console.log('Token:', response.token);
-            dispatch(setToken(response.token));
-            localStorage.setItem('token', response.token);
+        const result = await dispatch(login({ username, password }));
+        if (login.fulfilled.match(result)) {
             setIsVisible(false);
-        } catch (err) {
-            setError('Неверное логин или пароль');
         }
     };
 
@@ -55,6 +51,10 @@ export default function LoginForm() {
         setUsername("");
         setPassword("");
 
+    }
+
+    if (isAuthenticated) {
+        console.log("logged in");
     }
 
     return (
@@ -110,12 +110,13 @@ export default function LoginForm() {
                                 </div>
                                 <div className={styles.formError}>
                                     <p>{error}</p>
+                                    <p>{formError}</p>
                                 </div>
 
                             </div>
 
                             <div className={styles.formAction}>
-                                <Button type="submit" disabled={isLoading} onClick={() => { setIsVisible(true) }}>Войти</Button>
+                                <Button type="submit" disabled={loading} onClick={() => { setIsVisible(true) }}>Войти</Button>
                                 <Button variant="outline" onClick={() => { setIsVisible(false) }}>Отменить</Button>
                             </div>
                         </form>
