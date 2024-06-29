@@ -14,8 +14,9 @@ export default function MovieRating({ ratingValue = "0" }: { ratingValue: string
                         key={ratingValue}
                         value={index + 1}
                         path={
-                            rating && ratingValue <= rating ? 'active' :
+                            hover === 0 ? rating && ratingValue <= rating ? 'active' : 'initial' :
                                 ratingValue <= hover ? 'hover' : 'initial'
+
                         }
                         onClick={() => setRating(ratingValue)}
                         onMouseEnter={() => setHover(ratingValue)}

@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+}
+
+.sliderContainer {
+    margin: 0 32px;
+    position: relative;
+
+}
+
+.title {
+    font-size: var(--font-size-t0);
+    font-weight: var(--font-weight-semibold);
+}
+
+.container .actorsListContainer {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 24px;
+    /* scroll-snap-type: x mandatory; */
+
+}
+
+.actorsTitleContainer {
+    padding: 0 32px;
+
+}
+
+.scrollBtnL {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.scrollBtnR {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}

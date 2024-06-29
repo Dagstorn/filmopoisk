@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Movie } from '../../shared/types';
+import { Movie, MovieDetailed } from '../../shared/types';
 
 
 export interface MoviesResponse {
     search_result: Movie[];
     total_pages: number;
 }
+
+export interface MovieDetailsResponse extends MovieDetailed {}
   
 export interface MoviesQueryParams {
     genre?: string;
@@ -36,9 +38,13 @@ export const moviesApi = createApi({
                 return  query.slice(0, -1);
             }
         }),
+        getMovieDetails: builder.query<MovieDetailsResponse, string>({
+            query: ( id ) => `/movie/${id}`,
+        })
         
     })
 });
 
 export const useGetMoviesQuery = moviesApi.useGetMoviesQuery;
+export const useGetMovieDetailsQuery = moviesApi.useGetMovieDetailsQuery;
 
