@@ -22,7 +22,10 @@ export default function MovieRating({ movieId, ratingValue = "0", refetch }: { m
         if (isAuthenticated) {
             setRating(rate);
             try {
-                await rateMovie({ movieId, user_rate: rate }).unwrap();
+                const res = await rateMovie({ movieId, user_rate: rate }).unwrap();
+                if (res) {
+                    setRating(Number(res.newAverageRate));
+                }
                 refetch();
             } catch (error) {
                 console.error('Failed to rate movie:', error);
