@@ -43,7 +43,7 @@ function MovieCard({ movie }: { movie: Movie }) {
                 </div>
             </div>
             <div className={styles.rating}>
-                <MovieRating ratingValue={movie.rating} />
+                <MovieRating refetch={() => { }} movieId={String(movie.id)} ratingValue={movie.rating} />
             </div>
         </div>
     );

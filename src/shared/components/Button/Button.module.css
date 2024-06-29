@@ -8,15 +8,30 @@
     font-weight: var(--font-weight-bold);
     border-radius: var(--border-radius);
     transition: background-color 0.3s ease;
-    background-color: var(--accent-color);
     color: #FFFFFF;
     padding: 8px 16px 8px 16px;
     height: 40px;
 
 }
 
-.button:hover {
+.default {
+    background-color: var(--accent-color);
+}
+
+.default:hover {
     background-color: var(--accent-color-darker);
     transition: background-color .3s ease-in-out;
 
+}
+
+.outline {
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    background-color: transparent;
+}
+
+.outline:hover {
+    color: var(--accent-color-darker);
+    border: 1px solid var(--accent-color-darker);
+    transition: background-color .3s ease-in-out;
 }

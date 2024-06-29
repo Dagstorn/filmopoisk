@@ -8,7 +8,7 @@ import ActorsList from "@/features/ActorsList/ActorsList";
 export default function MoviePage() {
     const { movieId } = useParams<{ movieId: string }>();
 
-    const { data: movieDetails, error, isLoading } = useGetMovieDetailsQuery(movieId as string);
+    const { data: movieDetails, error, isLoading, refetch } = useGetMovieDetailsQuery(movieId as string);
 
     if (isLoading) return <Spinner />;
     if (error) return <div>Error loading movie details.</div>;
@@ -17,7 +17,7 @@ export default function MoviePage() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <DetailedMovieCard movie={movieDetails} />
+                <DetailedMovieCard refetch={refetch} movie={movieDetails} />
             </div>
             <ActorsList actors={movieDetails.actors} />
         </div>

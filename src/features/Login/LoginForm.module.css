@@ -1,0 +1,71 @@
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: var(--font-size-t2);
+    font-weight: var(--font-weight-semibold);
+}
+
+.closeBtn {
+    cursor: pointer;
+}
+
+.formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    display: flex;
+    gap: 4px;
+    font-size: var(--font-size-main);
+    font-weight: var(--font-weight-thin);
+}
+
+
+.label span:last-child {
+    color: red;
+}
+
+.formAction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.formError p {
+    margin: 0;
+    color: rgb(193, 1, 1);
+    font-size: var(--font-size-main);
+    font-weight: var(--font-weight-thin);
+}

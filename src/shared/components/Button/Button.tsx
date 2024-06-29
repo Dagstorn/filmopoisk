@@ -3,9 +3,20 @@ import styles from './Button.module.css';
 import classNames from 'classnames';
 
 
-const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ className, children, ...props }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: 'default' | 'outline';
+}
+
+const Button: React.FC<ButtonProps> = ({ className, children, variant = 'default', ...props }) => {
     return (
-        <button className={classNames(styles.button, className)} {...props}>
+        <button className={classNames(
+            styles.button,
+            {
+                [styles.default]: variant === 'default',
+                [styles.outline]: variant === 'outline',
+            },
+            className
+        )} {...props}>
             {children}
         </button>
     );

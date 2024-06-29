@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "@/shared/components/Spinner/Spinner";
 
-function DetailedMovieCard({ movie }: { movie: MovieDetailed }) {
+function DetailedMovieCard({ movie, refetch }: { movie: MovieDetailed, refetch: () => void }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
@@ -37,13 +37,17 @@ function DetailedMovieCard({ movie }: { movie: MovieDetailed }) {
                     <span className={styles.desc_name}>Год выпуска</span>
                     <p className={styles.desc_val}>{movie.release_year}</p>
                 </div>
+                <div className={styles.desc_row}>
+                    <span className={styles.desc_name}>Рейтинг</span>
+                    <p className={styles.desc_val}>{movie.rating}</p>
+                </div>
                 <div className={styles.description_row}>
                     <span className={styles.desc_name}>Описание</span>
                     <p className={styles.desc_val}>{movie.description}</p>
                 </div>
             </div>
             <div className={styles.rating}>
-                <MovieRating ratingValue={movie.rating} />
+                <MovieRating refetch={refetch} movieId={String(movie.id)} ratingValue={movie.rating} />
             </div>
         </div>
     );

@@ -24,7 +24,7 @@ export default function ActorsList({ actors }: { actors: Actor[] }) {
                 <ArrowBtn className={styles.scrollBtnR} direction="right" onClick={() => scroll("right")} />
                 <div id="actorListContainer" className={styles.actorsListContainer}>
                     {actors.map((actor) => (
-                        <ActorCard actor={actor} />
+                        <ActorCard key={actor.name} actor={actor} />
                     ))}
                 </div>
             </div>
