@@ -30,15 +30,15 @@ function DetailedMovieCard({ movie, refetch }: { movie: MovieDetailed, refetch: 
             }}>
                 <span className={styles.title}>{movie.title}</span>
                 <div className={styles.desc_row}>
-                    <span className={styles.desc_name}>Жанр</span>
+                    <span className={styles.desc_name}>Жанр:</span>
                     <p className={styles.desc_val}>{movie.genre}</p>
                 </div>
                 <div className={styles.desc_row}>
-                    <span className={styles.desc_name}>Год выпуска</span>
+                    <span className={styles.desc_name}>Год выпуска:</span>
                     <p className={styles.desc_val}>{movie.release_year}</p>
                 </div>
                 <div className={styles.desc_row}>
-                    <span className={styles.desc_name}>Рейтинг</span>
+                    <span className={styles.desc_name}>Рейтинг:</span>
                     <p className={styles.desc_val}>{movie.rating}</p>
                 </div>
                 <div className={styles.description_row}>

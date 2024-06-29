@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './CustomSelect.module.css';
+import classNames from 'classnames';
 
 interface Option {
     value: string;
@@ -41,8 +42,17 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ placeholder, value, onChang
 
     return (
         <div className={styles.customSelect} ref={dropdownRef}>
-            <div className={styles.selectBox} onClick={handleToggle}>
-                <span>{options.find(option => option.value === selectedValue)?.label || placeholder}</span>
+            <div className={classNames(
+                styles.selectBox,
+                {
+                    [styles.activewithin]: isOpen,
+                },
+            )} onClick={handleToggle}>
+                <span className={classNames(
+                    {
+                        [styles.selected]: selectedValue === ''
+                    }
+                )}>{options.find(option => option.value === selectedValue)?.label || placeholder}</span>
 
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 

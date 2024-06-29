@@ -41,13 +41,13 @@ export default function MoviesList() {
     };
 
 
-    if (isLoading) return <Spinner />;
-    if (error) return <div className={styles.errorContainer}>;
+    if (isLoading) return <Spinner />
+    if (error) return <div className={styles.errorContainer}>
         <span className={styles.errorTop}>Фильмы не найдены</span>
         <span className={styles.errorDetails}>Измените запрос и попробуйте снова</span>
-    </div>;
+    </div>
 
-    if (data?.search_result && data?.search_result.length === 0) return <div className={styles.errorContainer}>;
+    if (data?.search_result && data?.search_result.length === 0) return <div className={styles.errorContainer}>
         <span className={styles.errorTop}>Фильмы не найдены</span>
         <span className={styles.errorDetails}>Измените запрос и попробуйте снова</span>
     </div>

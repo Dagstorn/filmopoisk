@@ -10,16 +10,16 @@
     line-height: 20px;
     color: #333;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .filterGroup:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-weight: var(--font-weight-thin);
     color: var(--text-main);
     font-size: var(--font-size-main);

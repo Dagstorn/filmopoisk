@@ -1,11 +1,26 @@
 .searchBar {
     display: flex;
     align-items: center;
-    width: 25%;
+    width: 26.5%;
     background-color: #fff;
     border-radius: var(--border-radius);
     padding: 0 12px;
     gap: 8px;
+    border: 1px solid #fff;
+
+}
+
+.searchBar:hover {
+    border: 1px solid #CED2D6;
+    cursor: pointer;
+}
+
+.input:hover {
+    cursor: pointer;
+}
+
+.searchBar:focus-within {
+    border: 1px solid #FF5500;
 }
 
 .input {
@@ -15,6 +30,8 @@
     font-size: var(--font-size-main);
     font-weight: var(--font-weight-thin);
     height: 40px;
+    margin: 0;
+    padding: 0;
     color: var(--text-main);
     font-family: 'Roboto', sans-serif;
 }

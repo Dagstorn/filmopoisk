@@ -6,11 +6,11 @@
 }
 
 .filters {
-    flex: 1;
+    flex: 2;
 }
 
 .mainContent {
-    flex: 3;
+    flex: 7;
     display: flex;
     flex-direction: column;
     gap: 16px;

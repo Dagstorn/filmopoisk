@@ -10,7 +10,7 @@
 }
 
 .poster {
-    width: 20%;
+    width: 400px;
     cursor: pointer;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .info {
-    width: 80%;
+    flex: 1;
     cursor: pointer;
 
 }
@@ -31,7 +31,7 @@
     font-size: var(--font-size-logo);
     font-weight: var(--font-weight-bold);
     color: var(--text-main);
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     display: block;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .desc_row:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .poster {
@@ -86,4 +86,5 @@
     font-size: var(--font-size-t1);
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
