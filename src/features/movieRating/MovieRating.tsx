@@ -1,19 +1,21 @@
+'use client'
 import { useEffect, useState } from "react";
 import styles from "./MovieRating.module.css";
 import StarIcon from "@/shared/components/StarIcon/StarIcon";
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/providers/store";
+import { RootState } from "@/providers/store";
 import { useRateMovieMutation } from "../api/ratingApi";
 
-export default function MovieRating({ movieId, ratingValue = "0", refetch }: { movieId: string, ratingValue: string, refetch: () => void }) {
-    const [rating, setRating] = useState<number>(Number(ratingValue));
+export default function MovieRating({ movieId, updateRating }: { movieId: string, updateRating?: (value: string) => void; }) {
+    const [rating, setRating] = useState<number>(Number(0));
     const [hover, setHover] = useState<number>(0);
 
     useEffect(() => {
-        if (rating !== Number(ratingValue)) {
-            setRating(Number(ratingValue));
+        const storedValue = localStorage.getItem('userRating');
+        if (storedValue) {
+            setRating(JSON.parse(storedValue).rating);
         }
-    }, [ratingValue])
+    }, [])
 
     const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
     const [rateMovie] = useRateMovieMutation();
@@ -22,15 +24,17 @@ export default function MovieRating({ movieId, ratingValue = "0", refetch }: { m
         if (isAuthenticated) {
             setRating(rate);
             try {
-                localStorage.setItem('userRating', JSON.stringify({
-                    movieId,
-                    rate,
-                }));
+                const userRating = {
+                    "movieId": movieId,
+                    "rating": rate,
+                };
+                localStorage.setItem('userRating', JSON.stringify(userRating));
+
                 const res = await rateMovie({ movieId, user_rate: rate }).unwrap();
-                if (res) {
-                    setRating(Number(res.newAverageRate));
+
+                if (updateRating) {
+                    updateRating(String(res.newAverageRate));
                 }
-                refetch();
             } catch (error) {
                 console.error('Failed to rate movie:', error);
             }

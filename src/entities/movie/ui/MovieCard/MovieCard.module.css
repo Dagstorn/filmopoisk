@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.link {
+    text-decoration: none;
+    color: inherit;
+}
 
 .title {
     font-size: var(--font-size-t1);

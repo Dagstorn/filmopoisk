@@ -1,10 +1,10 @@
+'use client';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchBar.module.css';
-import { RootState } from '@/app/providers/store';
+import { RootState } from '@/providers/store';
 import { setSearchQuery } from '@/entities/movie/model/moviesSlice';
 import { useEffect, useState } from 'react';
 import useDebounce from '@/shared/hooks/useDebounce';
-import { useSearchParams } from 'react-router-dom';
 
 export default function SearchBar() {
     const dispatch = useDispatch();
@@ -12,8 +12,7 @@ export default function SearchBar() {
 
     const [inputValue, setInputValue] = useState(searchQuery);
     const debouncedValue = useDebounce(inputValue, 500);
-
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useState(new URLSearchParams());
     useEffect(() => {
         const title = searchParams.get('title') || '';
         setInputValue(title);

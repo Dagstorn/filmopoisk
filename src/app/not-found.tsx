@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 
 export default function NotFoundPage() {
@@ -6,7 +6,7 @@ export default function NotFoundPage() {
         <div>
             <div >
                 404 Not Found <br />
-                <Link to={'/'}>Home</Link>
+                <Link href={'/'}>Home</Link>
             </div>
         </div >
     )

@@ -1,13 +1,13 @@
+'use client'
 import { useGetMoviesQuery } from "../api/moviesApi";
 import MovieCard from "@/entities/movie/ui/MovieCard/MovieCard";
 import styles from "./MovieList.module.css"
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/providers/store";
+import { RootState } from "@/providers/store";
 import Spinner from "@/shared/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 
 import ArrowBtn from "@/shared/components/ArrowBtn/ArrowBtn";
-import { useSearchParams } from "react-router-dom";
 export default function MoviesList() {
     const genreFilter = useSelector((state: RootState) => state.movies.genreFilter);
     const yearFilter = useSelector((state: RootState) => state.movies.yearFilter);
@@ -16,7 +16,7 @@ export default function MoviesList() {
 
     const { data: data, error, isLoading } = useGetMoviesQuery({ genre: genreFilter, release_year: yearFilter, title: searchQuery, page });
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useState(new URLSearchParams());
 
     useEffect(() => {
         const page = searchParams.get('page') || '';

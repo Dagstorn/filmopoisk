@@ -1,13 +1,14 @@
+'use client'
 import DetailedMovieCard from "@/entities/movie/ui/MovieCard/DetailedMovieCard";
 import { useGetMovieDetailsQuery } from "@/features/api/moviesApi";
 import Spinner from "@/shared/components/Spinner/Spinner";
-import { useParams } from "react-router-dom";
 import styles from "./MoviePage.module.css";
 import ActorsList from "@/features/ActorsList/ActorsList";
+import { useParams } from 'next/navigation';
 
 export default function MoviePage() {
-    const { movieId } = useParams<{ movieId: string }>();
-
+    const params = useParams();
+    const { movieId } = params;
     const { data: movieDetails, error, isLoading, refetch } = useGetMovieDetailsQuery(movieId as string);
 
     if (isLoading) return <Spinner />;

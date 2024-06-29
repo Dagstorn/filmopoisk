@@ -1,17 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../Filters.module.css';
 import { YEARS } from '@/shared/constants/years';
-import { RootState } from '@/app/providers/store';
+import { RootState } from '@/providers/store';
 import { setYearFilter } from '@/entities/movie/model/moviesSlice';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CustomSelect from '@/shared/components/Select/CustomSelect';
 
 export default function YearFilter() {
     const dispatch = useDispatch();
     const year = useSelector((state: RootState) => state.movies.yearFilter);
-
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useState(new URLSearchParams());
     useEffect(() => {
         const year = searchParams.get('year') || '';
         dispatch(setYearFilter(year));

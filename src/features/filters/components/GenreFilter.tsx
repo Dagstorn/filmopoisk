@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../Filters.module.css';
 import { GENRES } from "@/shared/constants/genres";
-import { RootState } from '@/app/providers/store';
+import { RootState } from '@/providers/store';
 import { setGenreFilter } from '@/entities/movie/model/moviesSlice';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CustomSelect from '@/shared/components/Select/CustomSelect';
 
 export default function GenreFilter() {
     const dispatch = useDispatch();
     const genre = useSelector((state: RootState) => state.movies.genreFilter);
+    const [searchParams, setSearchParams] = useState(new URLSearchParams());
 
-    const [searchParams, setSearchParams] = useSearchParams();
     useEffect(() => {
         const genre = searchParams.get('genre') || '';
         dispatch(setGenreFilter(genre));

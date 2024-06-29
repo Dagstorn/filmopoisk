@@ -1,3 +1,4 @@
+'use client'
 import styles from "./Filters.module.css";
 import GenreFilter from "./components/GenreFilter";
 import YearFilter from "./components/YearFilter";
