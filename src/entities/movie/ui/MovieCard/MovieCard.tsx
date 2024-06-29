@@ -9,6 +9,8 @@ function MovieCard({ movie }: { movie: Movie }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
+
+
     return (
         <div className={styles.card}>
             <div className={styles.poster} onClick={() => {
@@ -43,7 +45,7 @@ function MovieCard({ movie }: { movie: Movie }) {
                 </div>
             </div>
             <div className={styles.rating}>
-                <MovieRating refetch={() => { }} movieId={String(movie.id)} ratingValue={movie.rating} />
+                <MovieRating movieId={String(movie.id)} />
             </div>
         </div>
     );

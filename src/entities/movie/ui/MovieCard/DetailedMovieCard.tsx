@@ -5,9 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "@/shared/components/Spinner/Spinner";
 
-function DetailedMovieCard({ movie, refetch }: { movie: MovieDetailed, refetch: () => void }) {
+function DetailedMovieCard({ movie }: { movie: MovieDetailed, refetch: () => void }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const [avgRating, setAvgRating] = useState(movie.rating);
+    const updateRating = (rating: string) => {
+        setAvgRating(rating);
+    }
+
 
     return (
         <div className={styles.card}>
@@ -39,7 +44,7 @@ function DetailedMovieCard({ movie, refetch }: { movie: MovieDetailed, refetch: 
                 </div>
                 <div className={styles.desc_row}>
                     <span className={styles.desc_name}>Рейтинг:</span>
-                    <p className={styles.desc_val}>{movie.rating}</p>
+                    <p className={styles.desc_val}>{avgRating}</p>
                 </div>
                 <div className={styles.description_row}>
                     <span className={styles.desc_name}>Описание</span>
@@ -47,7 +52,7 @@ function DetailedMovieCard({ movie, refetch }: { movie: MovieDetailed, refetch: 
                 </div>
             </div>
             <div className={styles.rating}>
-                <MovieRating refetch={refetch} movieId={String(movie.id)} ratingValue={movie.rating} />
+                <MovieRating updateRating={updateRating} movieId={String(movie.id)} />
             </div>
         </div>
     );
