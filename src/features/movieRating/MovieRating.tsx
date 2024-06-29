@@ -22,6 +22,10 @@ export default function MovieRating({ movieId, ratingValue = "0", refetch }: { m
         if (isAuthenticated) {
             setRating(rate);
             try {
+                localStorage.setItem('userRating', JSON.stringify({
+                    movieId,
+                    rate,
+                }));
                 const res = await rateMovie({ movieId, user_rate: rate }).unwrap();
                 if (res) {
                     setRating(Number(res.newAverageRate));

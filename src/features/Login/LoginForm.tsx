@@ -51,6 +51,7 @@ export default function LoginForm() {
     const logout = () => {
         dispatch(clearToken());
         localStorage.removeItem('token');
+        localStorage.removeItem('userRating');
         setUsername("");
         setPassword("");
 
