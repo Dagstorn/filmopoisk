@@ -30,8 +30,11 @@ export default function SearchBar() {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
+
         const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set('title', e.target.value);
+        newSearchParams.delete('page');
+
         if (e.target.value === "") {
             newSearchParams.delete('title');
         }

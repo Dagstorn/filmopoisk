@@ -1,3 +1,4 @@
+'use client';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../Filters.module.css';
 import { YEARS } from '@/shared/constants/years';
@@ -13,7 +14,6 @@ export default function YearFilter() {
     const year = useSelector((state: RootState) => state.movies.yearFilter);
     const router = useRouter();
     const searchParams = useSearchParams();
-
     useEffect(() => {
         const year = searchParams.get('year') || '';
         dispatch(setYearFilter(year));

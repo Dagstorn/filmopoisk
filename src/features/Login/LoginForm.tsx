@@ -7,7 +7,7 @@ import CustomInput from "@/shared/components/Input/CustomInput";
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "@/entities/user/model/authSlice";
 import { login, selectAuthLoading, selectAuthError, selectIsAuthenticated } from '@/entities/user/model/authSlice';
-import { AppDispatch } from '@/app/providers/store';
+import { AppDispatch } from '@/providers/store';
 
 
 export default function LoginForm() {
@@ -53,9 +53,6 @@ export default function LoginForm() {
 
     }
 
-    if (isAuthenticated) {
-        console.log("logged in");
-    }
 
     return (
         <div>

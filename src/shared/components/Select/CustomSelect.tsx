@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './CustomSelect.module.css';
 import classNames from 'classnames';
@@ -18,6 +19,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ placeholder, value, onChang
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(value);
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setSelectedValue(value)
+    }, [value])
 
     const handleToggle = () => setIsOpen(!isOpen);
 

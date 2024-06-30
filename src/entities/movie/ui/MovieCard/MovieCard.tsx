@@ -10,7 +10,7 @@ function MovieCard({ movie }: { movie: Movie }) {
         <div className={styles.card}>
             <Link className={styles.link} href={`/movies/${movie.id}`}>
                 <div className={styles.poster}>
-                    {loading && <Spinner />}
+                    {loading && <Spinner extraClass={styles.posterSpinner} />}
                     <img
                         src={`http://localhost:3030/static/images/${movie.id}`}
                         alt=""

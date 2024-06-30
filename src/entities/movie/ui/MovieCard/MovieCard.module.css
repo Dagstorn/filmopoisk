@@ -7,10 +7,22 @@
     gap: 25px;
 }
 
+
+
 .poster {
     width: 100px;
+    height: 100%;
     cursor: pointer;
+    position: relative;
 }
+
+.posterSpinner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1111;
+}
+
 
 .poster img {
     width: 100%;

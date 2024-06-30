@@ -1,3 +1,5 @@
+'use client';
+
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../Filters.module.css';
 import { GENRES } from "@/shared/constants/genres";

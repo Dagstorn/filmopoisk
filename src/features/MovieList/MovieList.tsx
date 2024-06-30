@@ -8,6 +8,7 @@ import Spinner from "@/shared/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 
 import ArrowBtn from "@/shared/components/ArrowBtn/ArrowBtn";
+import { useRouter, useSearchParams } from "next/navigation";
 export default function MoviesList() {
     const genreFilter = useSelector((state: RootState) => state.movies.genreFilter);
     const yearFilter = useSelector((state: RootState) => state.movies.yearFilter);
@@ -16,7 +17,8 @@ export default function MoviesList() {
 
     const { data: data, error, isLoading } = useGetMoviesQuery({ genre: genreFilter, release_year: yearFilter, title: searchQuery, page });
 
-    const [searchParams, setSearchParams] = useState(new URLSearchParams());
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const page = searchParams.get('page') || '';
@@ -24,6 +26,8 @@ export default function MoviesList() {
             if (Number(page) > 0) {
                 setPage(Number(page));
             }
+        } else {
+            setPage(Number(1));
         }
     }, [searchParams]);
 
@@ -32,12 +36,12 @@ export default function MoviesList() {
     }, [page]);
 
 
-    const handlePageChange = (newPage: number) => {
+    function handlePageChange(newPage: number): void {
         setPage(page);
-        const newSearchParams = new URLSearchParams(searchParams);
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set('page', String(newPage));
-        setSearchParams(newSearchParams);
 
+        router.push(`${window.location.pathname}?${newSearchParams.toString()}`);
     };
 
 
