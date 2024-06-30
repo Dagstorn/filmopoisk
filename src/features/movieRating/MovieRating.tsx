@@ -10,9 +10,10 @@ export default function MovieRating({ movieId, updateRating }: { movieId: string
     const [hover, setHover] = useState<number>(0);
 
     useEffect(() => {
-        const storedValue = localStorage.getItem('userRating');
+        const storedValue = localStorage.getItem(movieId);
         if (storedValue) {
-            setRating(JSON.parse(storedValue).rating);
+            const userRating = JSON.parse(storedValue);
+            setRating(Number(userRating.rating));
         }
     }, []);
 
@@ -23,11 +24,9 @@ export default function MovieRating({ movieId, updateRating }: { movieId: string
         if (isAuthenticated) {
             setRating(rate);
             try {
-                const userRating = {
-                    "movieId": movieId,
-                    "rating": rate,
-                };
-                localStorage.setItem('userRating', JSON.stringify(userRating));
+                localStorage.setItem(movieId, JSON.stringify({
+                    "rating": rate
+                }));
 
                 const res = await rateMovie({ movieId, user_rate: rate }).unwrap();
                 if (updateRating) {

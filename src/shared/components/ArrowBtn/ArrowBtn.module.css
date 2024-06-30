@@ -21,3 +21,8 @@
 .disabled {
     background-color: #E9EAED;
 }
+
+.disabled:hover {
+    background-color: #E9EAED;
+    cursor: default;
+}

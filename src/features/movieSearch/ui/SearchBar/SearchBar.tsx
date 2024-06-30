@@ -30,6 +30,7 @@ export default function SearchBar() {
         setInputValue(e.target.value);
         const newSearchParams = new URLSearchParams(searchParams);
         newSearchParams.set('title', e.target.value);
+        newSearchParams.delete('page');
         if (e.target.value === "") {
             newSearchParams.delete('title');
         }

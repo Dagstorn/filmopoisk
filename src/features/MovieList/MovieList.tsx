@@ -24,6 +24,8 @@ export default function MoviesList() {
             if (Number(page) > 0) {
                 setPage(Number(page));
             }
+        } else {
+            setPage(Number(1));
         }
     }, [searchParams]);
 
