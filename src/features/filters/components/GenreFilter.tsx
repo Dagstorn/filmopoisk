@@ -5,11 +5,13 @@ import { RootState } from '@/providers/store';
 import { setGenreFilter } from '@/entities/movie/model/moviesSlice';
 import { useEffect, useState } from 'react';
 import CustomSelect from '@/shared/components/Select/CustomSelect';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function GenreFilter() {
     const dispatch = useDispatch();
     const genre = useSelector((state: RootState) => state.movies.genreFilter);
-    const [searchParams, setSearchParams] = useState(new URLSearchParams());
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const genre = searchParams.get('genre') || '';
@@ -17,14 +19,13 @@ export default function GenreFilter() {
     }, [searchParams, dispatch]);
 
     const handleGenreChange = (value: string) => {
-
         dispatch(setGenreFilter(value));
-        const newSearchParams = new URLSearchParams(searchParams);
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set('genre', value);
         if (value === "" || value === "0") {
             newSearchParams.delete('genre');
         }
-        setSearchParams(newSearchParams);
+        router.push(`${window.location.pathname}?${newSearchParams.toString()}`);
     };
 
 

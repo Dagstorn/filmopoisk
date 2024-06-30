@@ -5,6 +5,7 @@ import { RootState } from '@/providers/store';
 import { setSearchQuery } from '@/entities/movie/model/moviesSlice';
 import { useEffect, useState } from 'react';
 import useDebounce from '@/shared/hooks/useDebounce';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function SearchBar() {
     const dispatch = useDispatch();
@@ -12,7 +13,9 @@ export default function SearchBar() {
 
     const [inputValue, setInputValue] = useState(searchQuery);
     const debouncedValue = useDebounce(inputValue, 500);
-    const [searchParams, setSearchParams] = useState(new URLSearchParams());
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     useEffect(() => {
         const title = searchParams.get('title') || '';
         setInputValue(title);
@@ -27,20 +30,20 @@ export default function SearchBar() {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
-        const newSearchParams = new URLSearchParams(searchParams);
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set('title', e.target.value);
         if (e.target.value === "") {
             newSearchParams.delete('title');
         }
-        setSearchParams(newSearchParams);
+        router.push(`${window.location.pathname}?${newSearchParams.toString()}`);
     };
 
     const handleClear = () => {
         setInputValue('');
         dispatch(setSearchQuery(''));
-        const newSearchParams = new URLSearchParams(searchParams);
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.delete('title');
-        setSearchParams(newSearchParams);
+        router.push(`${window.location.pathname}?${newSearchParams.toString()}`);
     };
 
 

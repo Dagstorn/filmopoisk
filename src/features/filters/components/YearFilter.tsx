@@ -5,11 +5,15 @@ import { RootState } from '@/providers/store';
 import { setYearFilter } from '@/entities/movie/model/moviesSlice';
 import { useEffect, useState } from 'react';
 import CustomSelect from '@/shared/components/Select/CustomSelect';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 
 export default function YearFilter() {
     const dispatch = useDispatch();
     const year = useSelector((state: RootState) => state.movies.yearFilter);
-    const [searchParams, setSearchParams] = useState(new URLSearchParams());
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     useEffect(() => {
         const year = searchParams.get('year') || '';
         dispatch(setYearFilter(year));
@@ -17,12 +21,14 @@ export default function YearFilter() {
 
     const handleYearChange = (value: string) => {
         dispatch(setYearFilter(value));
-        const newSearchParams = new URLSearchParams(searchParams);
+
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set('year', value);
+
         if (value === "" || value === "0") {
             newSearchParams.delete('year');
         }
-        setSearchParams(newSearchParams);
+        router.push(`${window.location.pathname}?${newSearchParams.toString()}`);
     };
 
     const options = Object.entries(YEARS).map(([value, label]) => ({ value, label }));
